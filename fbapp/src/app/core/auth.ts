@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private baseUrl = 'http://localhost/ads-edp/';
+  private baseUrl = 'http://localhost/facebook_app/';
 
   constructor(private http: HttpClient) {}
 
@@ -19,7 +19,8 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}login.php`, data);
   }
 
-  home(): Observable<any> {
-    return this.http.get(`${this.baseUrl}home.php`);
+  home(userId: string | number): Observable<any> {
+    return this.http.get(`${this.baseUrl}home.php`, { params: { id: userId.toString() } });
   }
+
 }
